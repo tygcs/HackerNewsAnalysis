@@ -52,6 +52,7 @@ def getdata_commentlength_and_setiscore():
     # mock data
     # data = {'section_start': [0, 567, 1134, 1701, 2268, 2835, 3402, 3969, 4536, 5103, 5670, 6237, 6804, 7371, 7938, 8505, 9072, 9639, 10206, 10773, 11340, 11907, 12474, 13041, 13608, 14175, 14742, 15309, 15876, 16443, 17010, 17577, 18144, 18711, 19278, 19845, 20412, 20979, 21546, 22113, 22680, 23247, 23814, 24381, 24948, 25515, 26082, 26649, 27216, 27783, 28350, 28917, 29484, 30051, 30618, 31185, 31752, 32319, 32886, 33453, 34020, 34587, 35154, 35721, 36288, 36855, 37422, 37989, 38556, 39123, 39690, 40257, 40824, 41391, 41958, 42525, 43092, 43659, 44226, 44793, 45360, 45927, 46494, 47061, 47628, 48195, 48762, 49329, 49896, 50463, 51030, 51597, 52164, 52731, 53298, 53865, 54432, 54999, 55566, 56133], 'section_seti_avg': [0.5239945136214138, 0.49972555121874945, 0.4182666098515782, 0.4831479444702801, 0.316675808983, 0.627622041134, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'name': 'comment length and setiscore', 'unit': 567, 'section_comt_cnt': [403, 71, 23, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
 
+
     return data
 
 
@@ -168,7 +169,7 @@ def single_user_seti_distribution(request):
 
     content = {}
 
-    return render_to_response('singleuser.html', content)
+    return render_to_response('singer_user.html', content)
 
 
 def commentlength_and_setiscore(request):
@@ -185,6 +186,13 @@ def score_and_setiscore(request):
     return render_to_response('score.html', content)
 
 
+def git (request):
+
+    content = {}
+
+    return render_to_response('our_team.html', content)
+
+
 def index(request):
     content = {}
     return render_to_response('index.html', content)
@@ -198,4 +206,4 @@ def test(request):
 
 
 if __name__ == '__main__':
-    getdata_all_user_seti_distribution()
+    getdata_commentlength_and_setiscore()

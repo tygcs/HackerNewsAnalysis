@@ -16,7 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from commentAnalysis.views import test, index, all_user_seti_distribution
+from commentAnalysis.views import test, index, all_user_seti_distribution, single_user_seti_distribution
+from commentAnalysis.views import score_and_setiscore, about
 
 
 urlpatterns = [
@@ -24,4 +25,7 @@ urlpatterns = [
 	url(r'^test', test),
 	url(r'^index', index),
 	url(r'^alluser', all_user_seti_distribution),
+	url(r'^singleuser', single_user_seti_distribution),
+	url(r'^score', score_and_setiscore),
+	url(r'^about', about),
 ]
