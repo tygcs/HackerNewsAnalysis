@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<title>score</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Quality Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="../static/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/js/jquery-1.11.1.min.js"></script>
+<!-- Custom Theme files -->
+<link href="../static/css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--webfont-->
+<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<!----font-Awesome----->
+<link href="../static/css/font-awesome.css" rel="stylesheet">
+<!----font-Awesome----->
+<!------ light-box-script ----->
+<script src="../static/js/jquery.chocolat.js"></script>
+<link rel="stylesheet" href="/static/css/chocolat.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$('.about-grid a').Chocolat({linkImages:false});
+	});
+</script>
+
+
+		<meta charset="UTF-8" />
+		<title>ichartjs 示例</title>
+		<meta name="Description" content="The ichartjs's gallery center,ichartjs 示例中心" />
+		<meta name="Keywords" content="ichartjs demo,Html5 demo,ichartjs示例,ichartjs示例,Html5示例,Html5示例" />
+		<script type="text/javascript" src="../static/js//ichart.1.2.1.min.js"></script>
+		<link rel="stylesheet" href="../static/css/demo.css" type="text/css"/>
+		<script type="text/javascript">
+		$(function(){
+			var data = [
+			        	{name : 'Alex',value : 10,color:'#849fb4'},
+			        	{name : 'Mark',value : 30,color:'#bf9d32'},
+			        	{name : 'David',value : 40,color:'#728f1b'},
+			        	{name : 'Graham',value : 55,color:'#bf784c'},
+			        	{name : 'John',value : 70,color:'#2f8586'}
+		        	];
+			var data1 = [
+				        	{
+				        		name : '累计销售',
+				        		value:[168,302,332,453,668],
+				        		color:'#aa4643',
+				        		line_width:3
+				        	}
+				       ];
+
+	    	//是否启用动画
+			var animation = false;
+
+			var chart = new iChart.Column3D({
+				render : 'canvasDiv',
+				data: data,
+				title : {
+					text : 'This is a sample for Combination',
+					color : '#3e576f'
+				},
+				subtitle : {
+					text : 'Top 5 Sales Person,Oct 2011',
+					color : '#6d869f'
+				},
+				//footnote : {
+					//text : 'ichartjs.com',
+					//color : '#909090',
+					//fontsize : 11,
+					//padding : '0 38'
+				//},
+				width : 800,
+				height : 400,
+				animation : animation,
+				animation_duration:600,
+				shadow : true,
+				shadow_blur : 2,
+				shadow_color : '#aaaaaa',
+				shadow_offsetx : 1,
+				shadow_offsety : 0,
+				zScale:0.5,
+				xAngle : 50,
+				bottom_scale:1.1,
+				column_width:90,
+				label:{
+					color:'#4c4f48'
+				},
+				sub_option:{
+					label : {
+						color : '#4c4f48'
+					},
+					listeners:{
+						parseText:function(r,t){
+							//自定义柱形图上方label的格式。
+							return '$'+t+'k';
+						}
+					}
+				},
+				text_space : 16,//坐标系下方的label距离坐标系的距离。
+				coordinate:{
+					background_color : '#d5d8d1',
+					grid_color : '#919d7e',
+					color_factor : 0.24,
+					board_deep:10,//背面厚度
+					pedestal_height:10,//底座高度
+					left_board:false,//取消左侧面板
+					height:'80%',
+					width:'80%',
+					shadow:true,//底座的阴影效果
+					wall_style:[{//坐标系的各个面样式
+						color : '#333333'
+					},{
+						color : '#b2b2d3'
+					}, {
+						color : '#a6a6cb'
+					},{
+						color : '#333333'
+					},{
+						color : '#74749b'
+					},{
+						color : '#a6a6cb'
+					}],
+					scale:[{
+						 position:'left',
+						 start_scale:0,
+						 scale_space:10,
+						 end_scale:80,
+						 label:{
+							color:'#4c4f48'
+						 },
+						 listeners:{
+							parseText:function(t,x,y){
+								//自定义左侧坐标系刻度文本的格式。
+								return {text:'$'+t+'k'}
+							}
+						 }
+					},{
+						 position:'right',
+						 start_scale:0,
+						 scale_space:100,
+						 end_scale:800,
+						 scaleAlign:'right',
+						 label:{
+							color:'#aa4643'
+						 },
+						 listeners:{
+							parseText:function(t,x,y){
+								//自定义右侧坐标系刻度文本的格式。
+								return {text:'$'+t+'k'}
+							}
+						 }
+					}]
+				}
+			});
+
+
+			var line = new iChart.LineBasic2D({
+				z_index:1000,
+				data: data1,
+				label:{
+					color:'#4c4f48'
+				},
+				point_space:chart.get('column_width')+chart.get('column_space'),
+				tip:{
+					enable:true,
+					listeners:{
+						 //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
+						parseText:function(tip,name,value,text,i){
+							return "全年销售:"+value+"k";
+						}
+					}
+				},
+				scaleAlign : 'right',
+				sub_option : {
+					smooth:true,
+					label:false,
+					hollow_inside:false,
+					point_size:14
+				},
+				animation : animation,
+				coordinate:chart.coo
+			});
+
+			chart.plugin(line);
+
+			 //利用自定义组件构造左侧说明文本。
+			chart.plugin(new iChart.Custom({
+					drawFn:function(){
+						 //计算位置
+						var coo = chart.getCoordinate(),
+							x = coo.get('originx'),
+							y = coo.get('originy'),
+							H = coo.height;
+						//在左侧的位置，渲染说明文字。
+						chart.target.textAlign('center')
+						.textBaseline('middle')
+						.textFont('600 13px Verdana')
+						.fillText('Sales Figure',x-50,y+H/2,false,'#6d869f', false,false,false,-90);
+
+					}
+			}));
+
+			chart.draw();
+		});
+
+		</script>
+		</head>
+		<body>
+
+		<div class="header_about">
+  <div class="col-md-12 about_banner"><img src="../static/images/baner.jpg" class="img-responsive" alt=""/></div>
+</div>
+   <div class="header-home">
+	<div class="fixed-header">
+		<div class="logo">
+			<a href="index.html">
+	          <span class="secondary">Emotional</span>
+	          <span class="main">analysis</span>
+	        </a>
+		</div>
+				<div class="top-nav">
+				    <span class="menu"> </span>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+					  	<li><a href="singer_user.html">Singer users</a></li>
+					  	<li><a href="all_users.html">All users</a></li>
+					  	<li><a href="comments.html">Comments</a></li>
+					  	<li class="active"><a href="score.html">score</a></li>
+					</ul>
+				<!-- script-nav -->
+			<script>
+			$("span.menu").click(function(){
+				$(".top-nav ul").slideToggle(500, function(){
+				});
+			});
+			</script>
+			<!-- //script-nav -->
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+        <!--script-->
+		<script>
+			$(document).ready(function(){
+				$(".top-nav li a").click(function(){
+					$(this).parent().addClass("active");
+					$(this).parent().siblings().removeClass("active");
+				});
+			});
+		</script>
+			<!-- script-for sticky-nav -->
+		<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header-home").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop();
+				if(scrollpos >=navoffeset){
+					$(".header-home").addClass("fixed");
+				}else{
+					$(".header-home").removeClass("fixed");
+				}
+			 });
+
+		});
+		</script>
+
+	<div class="container">
+		  <div class="box_1">
+			<h3>Emotion Analysis for Singer user</h3>
+		  </div>
+		  <div class="col-md-12 about_banner"><img src="../static/images/about.jpg" class="img-responsive" alt=""/></div>
+		  <div class="box_20">
+		  	  <div class="col-sm-6 box_3">
+			  	  <div id='canvasDiv'></div>
+			  </div>
+		      <div class="clearfix"></div>
+		  </div>
+
+
+			<div id='canvasDiv'></div>
+			<div class='ichartjs_info'>
+
+			</div>
+
+
+			<div class="footer wow fadeInRight" data-wow-delay="0.4s">
+		<div class="container">
+		  <div class="footer_top">
+			<div class="col-sm-3">
+			   <ul class="list1">
+			   	<h3>Browse</h3>
+			   	 <li><a href="http://www.google.cn/maps">Google Map</a></li>
+			   	 <li><a href="https://www.youtube.com/">YouTube</a></li>
+			   	 <li><a href="https://accounts.google.com/SignUpWithoutGmail">Gmail</a></li>
+			     <li><a href="http://translate.google.cn/">Google Translation</a></li>
+			   </ul>
+			</div>
+			<div class="col-sm-3">
+			  <ul class="list1">
+			    <h3>Services</h3>
+			   	 <li><a href="about.html">Singer Users</a></li>
+			   	 <li><a href="services.html">All users</a></li>
+			   	 <li><a href="blog.html">Comments</a></li>
+			   	 <li><a href="contact.html">Others</a></li>
+			  </ul>
+			</div>
+			<div class="col-sm-3">
+			  <ul class="list1">
+			  	<h3>Navigation</h3>
+			   	 <li><a href="#">About Us</a></li>
+			   	 <li><a href="#">Apply</a></li>
+			   	 <li><a href="#">Terms and Conditions</a></li>
+			   	 <li><a href="#">Register</a></li>
+			  </ul>
+			</div>
+			<div class="col-sm-3">
+			  <ul class="socials">
+                 <li><a href="#"><i class="fa fb fa-facebook"></i></a></li>
+                 <li><a href="#"><i class="fa tw fa-twitter"></i></a></li>
+              </ul>
+              <ul class="list2">
+				<li><strong class="phone">+0000 00000 00</strong><br><small>Mon - Fri / 9.00AM - 06.00PM</small></li>
+				<li>Questions? <a href="xxxx@xxxx">mail(at)xxxx.com</a></li>
+			  </ul>
+			</div>
+			<div class="clearfix"> </div>
+		   </div>
+		 </div>
+	</div>
+	<div class="copy">
+	  <p>Copyright &copy; </p>
+    </div>
+
+
+		</body>
+</html>
