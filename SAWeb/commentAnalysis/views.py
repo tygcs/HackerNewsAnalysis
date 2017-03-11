@@ -36,7 +36,7 @@ def getdata_commentlength_and_setiscore():
 
 
     data = {}
-    data['name'] = 'comment length and setiscore'
+    data['name'] = "Correlation between Comments' length and Users' Sentiment"
     data['unit'] = unit
     data['section_start'] = sections_start
     data['section_comt_cnt'] = section_comt_cnt
@@ -125,14 +125,27 @@ def getdata_single_user_seti_distribution():
     conn = MySQLdb.connect(host='localhost', user='root', passwd='', db='gghacker', port=3306)
     cur = conn.cursor(MySQLdb.cursors.DictCursor)
 
-    sql = "select timems, seti_score from comtab_small where STRCMP(timems, '1420141743') >= 0;" # data since 2015-01-01
+    # todo
+    sql = "select count(*), sum(seti_score),byw from comtab_small where byw = 'bd';"
     # sql = "select timems, seti_score from comtab where STRCMP(timems, '1420141743') >= 0;"
 
     count = cur.execute(sql)  # number of items Mysql returned
     datas = cur.fetchallDict()  # x in datas is dict which contains {"textcon": 'xxx', "ranking": 'x', ...}
 
+    section_start = [0] * 5
+    section_comt_counts = [0] * 5
+    unit = 0.2
+    section_start[1] = unit
+    for d in range(2, 5):
+        section_start[d] = float("%.1f" % (float(section_start[d - 1]) + float(unit)))
+
+
+
     data = {}
-    data['name'] = 'comment length and setiscore'
+    data['name'] = "Sentiment Distribution Based on Single User's History"
+    data['unit'] = unit
+    data['section_start'] = section_start
+    data['section_comt_counts'] = section_comt_counts
 
     cur.close()
     conn.close()
