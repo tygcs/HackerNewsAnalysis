@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from commentAnalysis.views import test
+from commentAnalysis.views import test, index, all_user_seti_distribution
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^test', test),
+	url(r'^index', index),
+	url(r'^alluser', all_user_seti_distribution),
 ]
