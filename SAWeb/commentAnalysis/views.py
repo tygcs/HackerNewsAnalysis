@@ -201,12 +201,12 @@ def all_user_seti_distribution(request):
 
 def single_user_seti_distribution(request):
 
-    content = {}
+    content = getdata_single_user_seti_distribution()
 
     return render_to_response('singer_user.html', content)
 
 
-def commentlength_and_setiscore(request):
+def g(request):
 
     content = getdata_commentlength_and_setiscore()
 
