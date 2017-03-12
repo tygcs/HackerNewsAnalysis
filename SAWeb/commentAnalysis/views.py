@@ -132,23 +132,49 @@ def getdata_single_user_seti_distribution():
     count = cur.execute(sql)  # number of items Mysql returned
     datas = cur.fetchallDict()  # x in datas is dict which contains {"textcon": 'xxx', "ranking": 'x', ...}
 
+    users = ['pg', 'Mz', 'po']
+    # users = []  # select count(*), sum(seti_score),byw from comtab_small group by byw having count(*)>1;
     section_start = [0] * 5
-    section_comt_counts = [0] * 5
+    section_comt_counts1 = [0] * 5
+    section_comt_counts2 = [0] * 5
+    section_comt_counts3 = [0] * 5
     unit = 0.2
     section_start[1] = unit
     for d in range(2, 5):
         section_start[d] = float("%.1f" % (float(section_start[d - 1]) + float(unit)))
 
+    for i in range(3):
+        sql = "select seti_score from comtab_small where byw = '%s';" % (users[i])
+        # sql = select count(*), sum(seti_score), byw from comtab_small where byw = '%s' and where STRCMP(timems, '1420141743') >= 0;" % (users[i])
 
+        count = cur.execute(sql)
+        datas = cur.fetchallDict()
+
+        for x in datas:
+            for d in range(5):
+                # print x['seti_score'], float(x['seti_score']) >= section_start[d], section_start[d], x['seti_score'] < float(section_start[d]+unit)
+
+                if float(x['seti_score']) >= section_start[d] and float(x['seti_score']) < section_start[d]+unit:
+                    if i == 0:
+                        section_comt_counts1[d] = section_comt_counts1[d]  + 1
+                    elif i == 1:
+                        section_comt_counts2[d]  = section_comt_counts2[d]  + 1
+                    else:
+                        section_comt_counts3[d]  = section_comt_counts3[d]  + 1
+                    break
 
     data = {}
     data['name'] = "Sentiment Distribution Based on Single User's History"
     data['unit'] = unit
     data['section_start'] = section_start
-    data['section_comt_counts'] = section_comt_counts
+    data['section_comt_counts1'] = section_comt_counts1
+    data['section_comt_counts2'] = section_comt_counts2
+    data['section_comt_counts3'] = section_comt_counts3
 
     cur.close()
     conn.close()
+
+    # data = {'name': "Sentiment Distribution Based on Single User's History", 'section_comt_counts1': [21, 23, 22, 24, 25], 'section_comt_counts2': [18, 10, 9, 9, 7], 'section_comt_counts3': [0, 3, 2, 4, 2], 'section_start': [0, 0.2, 0.4, 0.6, 0.8], 'unit': 0.2}
 
     return data
 
@@ -184,7 +210,7 @@ def commentlength_and_setiscore(request):
 
     content = getdata_commentlength_and_setiscore()
 
-    return render_to_response('test.html', content)
+    return render_to_response('comments.html', content)
 
 
 def score_and_setiscore(request):
@@ -214,4 +240,4 @@ def test(request):
 
 
 if __name__ == '__main__':
-    getdata_commentlength_and_setiscore()
+    getdata_single_user_seti_distribution()
