@@ -206,7 +206,7 @@ def single_user_seti_distribution(request):
     return render_to_response('singer_user.html', content)
 
 
-def g(request):
+def commentlength_and_setiscore(request):
 
     content = getdata_commentlength_and_setiscore()
 
