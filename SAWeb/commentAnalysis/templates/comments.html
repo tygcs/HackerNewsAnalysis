@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<title>All users</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Quality Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="/static/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<!-- Custom Theme files -->
+<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--webfont-->
+<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<!----font-Awesome----->
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<!----font-Awesome----->
+<!------ light-box-script ----->
+<script src="/static/js/jquery.chocolat.js"></script>
+<link rel="stylesheet" href="/css/chocolat.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" charset="utf-8">
+
+	$(function() {
+		$('.about-grid a').Chocolat({linkImages:false});
+	});
+</script>
+		<script type="text/javascript" src="/static/js//ichart.1.2.1.min.js"></script>
+		<link rel="stylesheet" href="/static/css/demo.css" type="text/css"/>
+	
+	
+		<meta charset="UTF-8" />
+
+
+		<script type="text/javascript">
+	$(function(){
+
+
+		var flow=[];
+		{% for data in section_seti_avg %}
+			flow.push({{ data }})
+
+		{% endfor %}
+
+		
+		var data = [
+		         	{
+		         		name : 'number',
+		         		value:flow,
+		         		color:'#0d8ecf',
+		         		line_width:2
+		         	}
+		         ];
+//		var labels = [0, 567, 1134, 1701, 2268, 2835, 3402, 3969, 4536, 5103, 5670, 6237, 6804, 7371, 7938,
+//                              8505, 9072, 9639, 10206, 10773, 11340, 11907, 12474, 13041, 13608, 14175, 14742, 15309,
+//                              15876, 16443, 17010, 17577, 18144, 18711, 19278, 19845, 20412, 20979, 21546, 22113, 22680,
+//                              23247, 23814, 24381, 24948, 25515, 26082, 26649, 27216, 27783, 28350, 28917, 29484, 30051,
+//                              30618, 31185, 31752, 32319, 32886, 33453, 34020, 34587, 35154, 35721, 36288, 36855, 37422,
+//                              37989, 38556, 39123, 39690, 40257, 40824, 41391, 41958, 42525, 43092, 43659, 44226, 44793,
+//                              45360, 45927, 46494, 47061, 47628, 48195, 48762, 49329, 49896, 50463, 51030, 51597, 52164,
+//                              52731, 53298, 53865, 54432, 54999, 55566, 56133];
+		var labels=[1,140,280,420,560,700,840,980,1120,1260,1400]
+		var chart = new iChart.LineBasic2D({
+			render : 'canvasDiv',
+			data: data,
+			align:'center',
+			title : {
+				text:'Correlation between Comments\' length and Usrs\' Sentiment',
+				fontsize:24,
+				color:'#f7f7f7'
+			},
+
+			width : 800,
+			height : 400,
+			shadow:true,
+			shadow_color : '#20262f',
+			shadow_blur : 4,
+			shadow_offsetx : 0,
+			shadow_offsety : 2,
+			background_color:'#383e46',
+			tip:{
+				enable:true,
+				shadow:true
+			},
+			crosshair:{
+				enable:true,
+				line_color:'#62bce9'
+			},
+			sub_option : {
+				label:false,
+				hollow_inside:false,
+				point_size:0
+			},
+			coordinate:{
+				width:640,
+				height:260,
+				grid_color:'#cccccc',
+				axis:{
+					color:'#cccccc',
+					width:[0,0,2,2]
+				},
+				grids:{
+					vertical:{
+						way:'share_alike',
+				 		value:5
+					}
+				},
+				scale:[{
+					 position:'left',	
+					 start_scale:0,
+					 end_scale:1,
+					 scale_space:0.1,
+					 scale_size:2,
+					 label : {color:'#ffffff',fontsize:11},
+					 scale_color:'#9f9f9f'
+				},{
+					 position:'bottom',	
+					 label : {color:'#ffffff',fontsize:11},
+					 labels:labels
+				}]
+			}
+		});
+		
+		
+		//开始画图
+		chart.draw();
+	});
+	</script>
+</head>
+<body>
+
+<div class="header_about">
+  <div class="col-md-12 about_banner"><img src="/static/images/baner.jpg" class="img-responsive" alt=""/></div>
+</div>
+   <div class="header-home">
+	<div class="fixed-header">
+		<div class="logo">
+			<a href="/index">
+	          <span class="secondary">Emotional</span>
+	          <span class="main">analysis</span>
+	        </a>
+		</div>
+				<div class="top-nav">
+				    <span class="menu"> </span>
+					<ul>
+						<li><a href="/index">Home</a></li>
+						<li><a href="/alluser">All users</a></li>
+					  	<li><a href="/singleuser">Singer users</a></li>
+
+					  	<li class="active"><a href="/comments">Comments</a></li>
+					  	<li><a href="/score">score</a></li>
+					</ul>
+				<!-- script-nav -->
+			<script>
+			$("span.menu").click(function(){
+				$(".top-nav ul").slideToggle(500, function(){
+				});
+			});
+			</script>
+			<!-- //script-nav -->
+				</div>
+				<div class="clearfix"> </div>
+	 </div>
+</div>
+        <!--script-->
+		<script>
+			$(document).ready(function(){
+				$(".top-nav li a").click(function(){
+					$(this).parent().addClass("active");
+					$(this).parent().siblings().removeClass("active");
+				});
+			});
+		</script>
+			<!-- script-for sticky-nav -->
+		<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header-home").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header-home").addClass("fixed");
+				}else{
+					$(".header-home").removeClass("fixed");
+				}
+			 });
+			 
+		});
+		</script>
+	
+	<div class="container">
+
+		  <div class="col-md-12 about_banner"></div>
+		  <div class="box_20">
+		  	  <div class="col-sm-6 box_3">
+			  	  <div id='canvasDiv'></div>
+			  </div>
+			  
+		      <div class="clearfix"></div>	  
+		  </div>
+	
+	<div class="copy">
+	  <p>Copyright &copy; 2017.Gooker All rights reserved.More Information <a href="http://www.gucas.ac.cn/" target="_blank" title="UCAS">UCAS</a> </p>
+    </div>	
+	
+</body>
+</html>
+
